@@ -1,7 +1,10 @@
-require "rouge/rails/version"
+require "rails/railtie"
+require "rails/engine"
+require "action_view"
+require "rouge"
 
-module Rouge
-  module Rails
-    # Your code goes here...
-  end
-end
+require "rouge/rails/version"
+require "rouge/rails/template_handler"
+require "rouge/rails/railtie"
+require "rouge/rails/configuration"
+require "rouge/rails/engine"
