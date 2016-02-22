@@ -1,5 +1,7 @@
 # Rouge::Rails
 
+Give rails the power to render code samples in [rouge][rouge] colored glory.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -86,3 +88,5 @@ https://github.com/jacobsimeon/rouge-rails.
 The gem is available as open source under the terms of the [MIT
 License](http://opensource.org/licenses/MIT).
 
+
+[rouge]: https://github.com/jneen/rouge
