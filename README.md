@@ -32,7 +32,7 @@ Include them in your applications application.scss
 1. Place the code sample in a partial somewhere in your views directory and use
 ".rouge" as the file extension, e.g.:
 
-```
+```ruby
 # app/views/home/_code_sample.rouge
 class MyCode
   def example
@@ -50,7 +50,7 @@ code_sample "code_sample", :ruby
 ### Configure the default colorscheme
 
 Add this code to an initializer in your app
-```
+```ruby
 # config/initializers/rouge.rb
 Rouge::Rails.configure do |config|
   config.default_colorscheme = "solarized-dark"
