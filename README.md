@@ -44,7 +44,7 @@ end
 2. Render the code sample in your view:
 ```erb
 # app/views/home/index.html.erb
-code_sample "code_sample", :ruby
+<%= render "code_sample", language: :ruby %>
 ```
 
 ### Configure the default colorscheme
@@ -59,8 +59,8 @@ end
 
 ### Specify a colorscheme for a single partial
 
-```erb
-render "code_sample", language: :ruby, colorscheme: "github"
+```
+<%= render "code_sample", language: :ruby, colorscheme: "github" %>
 ```
 
 ## Development
