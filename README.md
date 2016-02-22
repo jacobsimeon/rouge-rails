@@ -55,6 +55,7 @@ Add this code to an initializer in your app
 Rouge::Rails.configure do |config|
   config.default_colorscheme = "solarized-dark"
 end
+```
 
 ### Specify a colorscheme for a single partial
 
