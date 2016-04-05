@@ -10,11 +10,12 @@ describe Rouge::Rails::TemplateHandler do
       end
     RUBY
   end
+  let(:output_buffer) { nil }
 
   context "when no language is specificed" do
     it "Formats a template as plaintext" do
       source = "hello \nworld"
-      template = double(:template, source: source, locals: [])
+      template = double(:template, type: nil, source: source, locals: [])
       evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
       formatted_code = Nokogiri::HTML(eval(evalable_ruby))
 
@@ -26,7 +27,7 @@ describe Rouge::Rails::TemplateHandler do
 
   context "when a language is specified" do
     it "formats the template in the given langauge" do
-      template = double(:template, source: ruby_source, locals: ["language"])
+      template = double(:template, type: nil, source: ruby_source, locals: ["language"])
       evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
 
       language = :ruby
@@ -44,7 +45,7 @@ describe Rouge::Rails::TemplateHandler do
 
   context "when there is no lexer for the specified language" do
     it "defaults to plain text" do
-      template = double(:template, source: ruby_source, locals: ["language"])
+      template = double(:template, type: nil, source: ruby_source, locals: ["language"])
       evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
 
       language = :lol_imma_langauge!
@@ -61,7 +62,7 @@ describe Rouge::Rails::TemplateHandler do
 
   it "uses 'default' as the default colorscheme" do
     source = "hello \nworld"
-    template = double(:template, source: source, locals: [])
+    template = double(:template, type: nil, source: source, locals: [])
     evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
     formatted_code = Nokogiri::HTML(eval(evalable_ruby))
 
@@ -76,7 +77,7 @@ describe Rouge::Rails::TemplateHandler do
     end
 
     source = "hello \nworld"
-    template = double(:template, source: source, locals: [])
+    template = double(:template, type: nil, source: source, locals: [])
     evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
     formatted_code = Nokogiri::HTML(eval(evalable_ruby))
 
@@ -90,7 +91,7 @@ describe Rouge::Rails::TemplateHandler do
 
   it "uses the specified colorscheme when passed as a param" do
     source = "hello \nworld"
-    template = double(:template, source: source, locals: ["colorscheme"])
+    template = double(:template, type: nil, source: source, locals: ["colorscheme"])
 
     evalable_ruby = Rouge::Rails::TemplateHandler.call(template)
 

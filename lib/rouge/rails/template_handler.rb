@@ -35,11 +35,20 @@ module Rouge::Rails
     end
 
     def source
-      template.source.inspect
+      "begin; #{erb_handler.call(template)} end"
     end
 
     def default_lexer
       "Rouge::Lexers::PlainText"
     end
+
+    def self.erb_handler
+      @erb_handler ||= ActionView::Template.handler_for_extension(:erb)
+    end
+
+    def erb_handler
+      self.class.erb_handler
+    end
+
   end
 end
