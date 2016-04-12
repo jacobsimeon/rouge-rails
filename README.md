@@ -65,6 +65,22 @@ end
 <%= render "code_sample", language: :ruby, colorscheme: "github" %>
 ```
 
+### You can even use ERB inside a rouge template
+
+```
+# app/controllers/home_controller.rb
+def index
+  @greeting = "hello world"
+end
+
+# app/views/home/_code_sample.rouge
+class MyCode
+  def example
+    puts "<%= @greeting %>"
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
