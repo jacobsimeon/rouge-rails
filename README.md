@@ -67,7 +67,7 @@ end
 
 ### You can even use ERB inside a rouge template
 
-```
+```ruby
 # app/controllers/home_controller.rb
 def index
   @greeting = "hello world"
