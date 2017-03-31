@@ -13,7 +13,7 @@ module Rouge::Rails
     def call
       %{
         lexer = #{lexer}
-        formatter = Rouge::Formatters::HTML.new(css_class: "#{colorscheme}")
+        formatter = Rouge::Formatters::HTMLPygments.new(Rouge::Formatters::HTML.new, "#{colorscheme}")
         formatter.format(lexer.lex(#{source})).html_safe
       }
     end
