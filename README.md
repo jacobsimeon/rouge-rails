@@ -21,7 +21,13 @@ Or install it yourself as:
 ## Setup
 
 Stylesheets with standard colorschemes are available in the asset pipeline.
-Include them in your applications application.scss
+Include one colorscheme in your `application.scss`:
+
+```scss
+@import "rouge/github";
+```
+
+Or include all colorschemes:
 
 ```scss
 @import "rouge";
