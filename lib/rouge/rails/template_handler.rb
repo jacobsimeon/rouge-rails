@@ -1,20 +1,21 @@
 module Rouge::Rails
   class TemplateHandler
-    def self.call(template)
-      new(template).call
+    def self.call(template, source=nil)
+      new(template, source).call
     end
 
-    attr_accessor :template
+    attr_accessor :template, :source
 
-    def initialize(template)
+    def initialize(template, source=nil)
       @template = template
+      @source = source
     end
 
     def call
       %{
         lexer = #{lexer}
         formatter = Rouge::Formatters::HTML.new(css_class: "#{colorscheme}")
-        formatter.format(lexer.lex(#{source})).html_safe
+        formatter.format(lexer.lex(#{erb_source})).html_safe
       }
     end
 
@@ -34,8 +35,18 @@ module Rouge::Rails
       end
     end
 
-    def source
-      "begin; #{erb_handler.call(template)} end"
+    # Starting with Rails 6, the ActionView template handler for ERB now takes 2 arguments,
+    # instead of just 1. This is how we can make it work for both Rails < 6 and Rails >= 6.
+    def call_erb_handler(template, source=nil)
+      # Rails >= 6
+      erb_handler.call(template, source)
+    rescue ArgumentError
+      # Rails < 6
+      erb_handler.call(template)
+    end
+
+    def erb_source
+      "begin; #{call_erb_handler(template, source)} end"
     end
 
     def default_lexer
